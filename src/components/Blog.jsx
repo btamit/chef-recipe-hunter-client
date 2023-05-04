@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useRef } from "react";
+import html2canvas from "html2canvas"
+import jsPDF from "jspdf";
+
 
 const Blog = () => {
+  const pdfRef = useRef();
+  const downloadPDF = () =>{
+    const input = pdfRef.current;
+    html2canvas(input).then((canvas) =>{
+      const imgData = canvas.toDataURL('image/png')
+      const pdf = new jsPDF('p','mm','a4',true)
+      let pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      let imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+      let ratio = Math.min(pdfWidth / imgWidth, pdfHeight/imgHeight);
+      let imgX = (pdfWidth = imgWidth * ratio) / 2;
+      const imgY = 30;
+      pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+      pdf.save('invoice.pdf');
+    })
+  }
   return (
-    <div className="my-container text-justify">
+    <div className="my-container text-justify" ref={pdfRef}>
+      <button onClick={downloadPDF} className="btn btn-primary border-none">Download PDF</button>
       <h2 className="max-w-lg mb-10 font-sans text-3xl font-bold tracking-tight sm:text-4xl md:mx-auto">
         Questions and Answers Session
       </h2>
@@ -40,12 +61,12 @@ const Blog = () => {
             b. How to validate React props using PropTypes?
           </p>
           <p>
-            There are numerous PropType validators in React props such as
-            01. PropTypes.any : The prop can be of any data type. 02. PropTypes.bool :
-            The prop should be a Boolean. 03. PropTypes.number : The prop should be
-            a number. 04. PropTypes.string : The prop should be a string.
-            05. PropTypes.func : The prop should be a function. PropTypes.array :
-            The prop should be an array.
+            There are numerous PropType validators in React props such as 01.
+            PropTypes.any : The prop can be of any data type. 02. PropTypes.bool
+            : The prop should be a Boolean. 03. PropTypes.number : The prop
+            should be a number. 04. PropTypes.string : The prop should be a
+            string. 05. PropTypes.func : The prop should be a function.
+            PropTypes.array : The prop should be an array.
             <br />
           </p>
         </div>
