@@ -2,12 +2,13 @@ import React, { useContext } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import app from "../../../firebase/firebase.config";
 
 const Login = () => {
   const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,7 +29,7 @@ const Login = () => {
       });
   };
   const handleGoogleSignIn = () => {
-    signInWithPopup(auth, provider)
+    signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);
@@ -36,6 +37,16 @@ const Login = () => {
       .catch((error) => {
         console.log(error.message);
       });
+  };
+  const handleGithubSignIn = () => {
+    signInWithPopup(auth, githubProvider)
+    .then(result => {
+      const loggedUser = result.user;
+      console.log(loggedUser)
+    })
+    .catch(error =>{
+      console.log(error)
+    })
   };
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -89,7 +100,7 @@ const Login = () => {
               <FaGoogle />
               Login with google
             </p>
-            <p className="border rounded-lg cursor-pointer p-2 flex items-center">
+            <p onClick={handleGithubSignIn} className="border rounded-lg cursor-pointer p-2 flex items-center">
               <FaGithub />
               Login with github
             </p>
