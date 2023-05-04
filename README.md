@@ -16,10 +16,10 @@ Each category , a button has been included for details information. Besides, in 
 * Fully responsive and eye catching site
 
 ## Complete Project
-Github Repo -> [Chef's Corner]()
+Github Repo -> [Chef's Corner](https://github.com/programming-hero-web-course-4/b7a10-chef-recipe-hunter-client-side-btamit)
 
 ## Live Link
-Hosted in firebase -> [chef's Corner]()
+Hosted in firebase -> [chef's Corner](https://chef-corner-client.web.app/)
 
 ## API 
 Simple API are included in this project.

@@ -4,6 +4,7 @@ import { FaEye, FaHeart, FaStar} from "react-icons/fa";
  import "react-toastify/dist/ReactToastify.css";
 import { useState } from 'react';
 import LoadingSpinner from './LoadingSpinner';
+import LazyLoad from 'react-lazy-load';
 const ChefDetails = () => {
 
     const navigation = useNavigation();
@@ -38,7 +39,10 @@ const ChefDetails = () => {
     return (
       <>
         <div className="my-container flex flex-col">
-          <img className="" src={img} alt="" />
+          <LazyLoad height={762} threshold={0.89}>
+            <img className="" src={img} alt="" />
+          </LazyLoad>
+          {/* <img className="" src={img} alt="" /> */}
           <h2 className="font-bold text-xl py-3">{name}</h2>
           <h4 className="mb-5">
             {" "}

@@ -11,14 +11,14 @@ const Home = () => {
     }
   const [chefs, setChefs] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/chefs")
+    fetch("https://chef-corner-server-btamit.vercel.app/chefs")
       .then((res) => res.json())
       .then((data) => setChefs(data))
       .catch((error) => console.log(error));
   }, []);
   const [features, setFeatures] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/features")
+    fetch("https://chef-corner-server-btamit.vercel.app/features")
       .then((res) => res.json())
       .then((data) => setFeatures(data))
       .catch((error) => console.log(error));
