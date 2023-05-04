@@ -33,6 +33,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -42,7 +43,8 @@ const Login = () => {
     signInWithPopup(auth, githubProvider)
     .then(result => {
       const loggedUser = result.user;
-      console.log(loggedUser)
+      console.log(loggedUser);
+      
     })
     .catch(error =>{
       console.log(error)
