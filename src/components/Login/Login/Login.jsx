@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
@@ -7,6 +7,7 @@ import app from "../../../firebase/firebase.config";
 
 const Login = () => {
   const auth = getAuth(app);
+  const [error, setError] = useState('');
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const { signIn } = useContext(AuthContext);
@@ -23,9 +24,11 @@ const Login = () => {
         const loggedUser = result.user;
         console.log(loggedUser);
         navigate(from, { replace: true });
+        setError('');
       })
       .catch((error) => {
         console.log(error);
+        setError(error.message)
       });
   };
   const handleGoogleSignIn = () => {
@@ -89,6 +92,7 @@ const Login = () => {
                   Forgot password?
                 </a>
               </label>
+              <p className="text-amber-400">{error}</p>
             </div>
             <div className="form-control mt-4">
               <button className="btn btn-primary border-none">Login</button>
@@ -102,7 +106,10 @@ const Login = () => {
               <FaGoogle />
               Login with google
             </p>
-            <p onClick={handleGithubSignIn} className="border rounded-lg cursor-pointer p-2 flex items-center">
+            <p
+              onClick={handleGithubSignIn}
+              className="border rounded-lg cursor-pointer p-2 flex items-center"
+            >
               <FaGithub />
               Login with github
             </p>
