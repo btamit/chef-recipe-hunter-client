@@ -52,6 +52,7 @@ const Footer = () => {
             <h2 className="font-bold text-xl mb-5">Contact</h2>
             <p>524 Broadway , NYC</p>
             <p>+1 777 - 978 - 5570</p>
+            <p>New York City, USA</p>
           </div>
         </div>
         <div className="py-6 text-sm  text-gray-400  flex justify-between">
