@@ -11,6 +11,7 @@ import AuthProvider from './providers/AuthProvider'
 import Login from './components/Login/Login/Login'
 import Register from './components/Login/Register/Register'
 import PrivateRoute from './components/PrivateRoute'
+import LoadingSpinner from './components/LoadingSpinner'
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register></Register>,
+      },
+      {
+        path: "loader",
+        element: <LoadingSpinner></LoadingSpinner>,
       },
     ],
   },
