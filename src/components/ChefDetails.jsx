@@ -1,9 +1,17 @@
-import { useLoaderData} from 'react-router-dom';
+import { useLoaderData, useNavigation} from 'react-router-dom';
 import { FaEye, FaHeart, FaStar} from "react-icons/fa";
  import { ToastContainer, toast } from "react-toastify";
  import "react-toastify/dist/ReactToastify.css";
 import { useState } from 'react';
+import LoadingSpinner from './LoadingSpinner';
 const ChefDetails = () => {
+
+    const navigation = useNavigation();
+      console.log(navigation.state);
+    if(navigation.state === 'loading'){
+      return <LoadingSpinner/>
+    }
+
     const data = useLoaderData();
     const { img, recipePicOne, recipePicTwo, recipePicThree, recipePicFour ,description,name,experience,recipeNumber,likeImg,like} =
       data;

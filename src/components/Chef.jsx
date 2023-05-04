@@ -1,7 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Chef = ({ chef }) => {
+   const navigation = useNavigation();
+   console.log(navigation.state)
+   if (navigation.state === "loading") {
+     return <LoadingSpinner />;
+   }
   const { img, name, experience, recipeNumber, likeImg, like, id } = chef;
   return (
     <div className="border p-10 rounded-lg flex flex-col">

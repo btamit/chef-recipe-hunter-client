@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
 import Feature from "./Feature";
 import Chef from "./Chef";
+import LoadingSpinner from "./LoadingSpinner";
 const Home = () => {
+   const navigation = useNavigation();
+   console.log(navigation.state);
+    if(navigation.state=='loading'){
+      return <LoadingSpinner></LoadingSpinner>
+    }
   const [chefs, setChefs] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/chefs")

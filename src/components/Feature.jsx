@@ -1,6 +1,7 @@
 import React from "react";
 
 const Feature = ({ feature }) => {
+  
   const { img, title, subTitle, icon, eyeIcon, views } = feature;
   return (
     <div className="bg-gray-100 p-5 rounded flex flex-col">
