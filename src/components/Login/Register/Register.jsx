@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
    const navigate = useNavigate();
    const location = useLocation();
    const from = location.state?.from?.pathname || "/";
   const handleRegister = (e) => {
     e.preventDefault();
+    setSuccess("");
     const form = e.target;
     const name = form.name.value;
     const photo = form.photo.value;
@@ -19,9 +22,14 @@ const Register = () => {
         const createdUser = result.user;
         console.log(createdUser);
         navigate(from, { replace: true });
+        setError('');
+        e.target.reset();
+        setSuccess('user has been successfully created');
       })
       .catch((error) => {
         console.log(error);
+        setError(error.message);
+        
       });
   };
   return (
@@ -86,6 +94,8 @@ const Register = () => {
             <div className="form-control mt-6">
               <button className="btn btn-primary border-none">Register</button>
             </div>
+            <p className="text-amber-400">{error}</p>
+            <p className="text-emerald-500">{success}</p>
           </form>
         </div>
       </div>
