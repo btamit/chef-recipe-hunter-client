@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import { AuthContext } from "../providers/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
-
+import "flowbite";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
@@ -38,12 +38,22 @@ const Header = () => {
                 Blog
               </NavLink>
             </li>
+            {/* <div className="tooltip" data-tip="hello">
+              <button className="btn">Hover me</button>
+
+            </div> */}
             <li>
               {user && (
-                <NavLink className="text-4xl" to="#">
-                  <img className="h-12 rounded-full" src={user.photoURL} alt="" />
-                  {/* <FaUserCircle></FaUserCircle> */}
-                </NavLink>
+                <div className="tooltip" data-tip="Bishojit Toppo Amit">
+                  <NavLink className="text-4xl" to="#">
+                    <img
+                      className="h-12 rounded-full hover:bg-sky-800"
+                      src={user.photoURL}
+                      alt="User-photo"
+                    />
+                    {/* <FaUserCircle></FaUserCircle> */}
+                  </NavLink>
+                </div>
               )}
             </li>
             <div className="flex flex-col items-center md:flex-row">
